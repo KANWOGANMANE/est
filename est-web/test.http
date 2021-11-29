@@ -1,0 +1,57 @@
+###
+POST http://localhost:8080/api/sms/verifyCode
+Content-Type: application/x-www-form-urlencoded
+
+phone=13266122792&codeType=0
+###
+
+POST http://localhost:8080/api/user/login/sms
+Content-Type: application/x-www-form-urlencoded
+
+phone=13266122792&sms=866391
+###
+
+POST http://localhost:8080/api/user/info
+token: 432775b846d94773b81a85cd75a5dbba
+###
+
+POST http://localhost:8080/api/user/logout
+token: 432775b846d94773b81a85cd75a5dbba
+###
+
+GET http://localhost:8080/api/xxxx?参数1=值1&参数2=值
+请求头1： 请求头1的值
+请求头2： 请求头2的值
+
+###
+
+POST http://localhost:8080/api/xxxx
+Content-Type: application/x-www-form-urlencoded
+请求头1： 请求头1的值
+请求头2： 请求头2的值
+
+参数1=值1&参数2=值
+###
+
+POST http://localhost:8080/api/xxxx
+Content-Type: application/json
+请求头1： 请求头1的值
+请求头2： 请求头2的值
+
+{
+  "参数名1": "值1",
+  "参数名2": "值1"
+}
+###
+
+POST http://localhost:80/api/xxxx
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="field-name"; filename="file.txt"
+
+< ./relative/path/to/local_file.txt
+--WebAppBoundary--
+
+
+

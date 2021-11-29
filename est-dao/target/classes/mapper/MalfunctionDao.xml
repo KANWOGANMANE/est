@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.MalfunctionDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.Malfunction">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="modelId" jdbcType="BIGINT" property="modelId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="isHint" jdbcType="INTEGER" property="isHint" />
+    <result column="hintTitle" jdbcType="VARCHAR" property="hintTitle" />
+    <result column="hintInfo" jdbcType="VARCHAR" property="hintInfo" />
+    <result column="hintImg" jdbcType="VARCHAR" property="hintImg" />
+    <result column="maintainTopPrice" jdbcType="DECIMAL" property="maintainTopPrice" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, modelId, title, isHint, hintTitle, hintInfo, hintImg, maintainTopPrice, createdUserId, 
+    updatedUserId, createdTime, updatedTime, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from malfunction
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from malfunction
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Malfunction" useGeneratedKeys="true">
+    insert into malfunction (modelId, title, isHint, 
+      hintTitle, hintInfo, hintImg, 
+      maintainTopPrice, createdUserId, updatedUserId, 
+      createdTime, updatedTime, isDelete
+      )
+    values (#{modelId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{isHint,jdbcType=INTEGER}, 
+      #{hintTitle,jdbcType=VARCHAR}, #{hintInfo,jdbcType=VARCHAR}, #{hintImg,jdbcType=VARCHAR}, 
+      #{maintainTopPrice,jdbcType=DECIMAL}, #{createdUserId,jdbcType=BIGINT}, #{updatedUserId,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Malfunction" useGeneratedKeys="true">
+    insert into malfunction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        modelId,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="isHint != null">
+        isHint,
+      </if>
+      <if test="hintTitle != null">
+        hintTitle,
+      </if>
+      <if test="hintInfo != null">
+        hintInfo,
+      </if>
+      <if test="hintImg != null">
+        hintImg,
+      </if>
+      <if test="maintainTopPrice != null">
+        maintainTopPrice,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isHint != null">
+        #{isHint,jdbcType=INTEGER},
+      </if>
+      <if test="hintTitle != null">
+        #{hintTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hintInfo != null">
+        #{hintInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hintImg != null">
+        #{hintImg,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainTopPrice != null">
+        #{maintainTopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.Malfunction">
+    update malfunction
+    <set>
+      <if test="modelId != null">
+        modelId = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isHint != null">
+        isHint = #{isHint,jdbcType=INTEGER},
+      </if>
+      <if test="hintTitle != null">
+        hintTitle = #{hintTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hintInfo != null">
+        hintInfo = #{hintInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hintImg != null">
+        hintImg = #{hintImg,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainTopPrice != null">
+        maintainTopPrice = #{maintainTopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.Malfunction">
+    update malfunction
+    set modelId = #{modelId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      isHint = #{isHint,jdbcType=INTEGER},
+      hintTitle = #{hintTitle,jdbcType=VARCHAR},
+      hintInfo = #{hintInfo,jdbcType=VARCHAR},
+      hintImg = #{hintImg,jdbcType=VARCHAR},
+      maintainTopPrice = #{maintainTopPrice,jdbcType=DECIMAL},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

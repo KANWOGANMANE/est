@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.MaintainOrderDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.MaintainOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serialNo" jdbcType="VARCHAR" property="serialNo" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="modelId" jdbcType="BIGINT" property="modelId" />
+    <result column="evaluateId" jdbcType="BIGINT" property="evaluateId" />
+    <result column="subscription" jdbcType="DECIMAL" property="subscription" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="isComment" jdbcType="INTEGER" property="isComment" />
+    <result column="cancelReason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, serialNo, orderNo, userId, modelId, evaluateId, subscription, price, `status`, 
+    isComment, cancelReason, createdUserId, updatedUserId, createdTime, updatedTime, 
+    isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from maintain_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from maintain_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.MaintainOrder" useGeneratedKeys="true">
+    insert into maintain_order (serialNo, orderNo, userId, 
+      modelId, evaluateId, subscription, 
+      price, `status`, isComment, 
+      cancelReason, createdUserId, updatedUserId, 
+      createdTime, updatedTime, isDelete
+      )
+    values (#{serialNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{modelId,jdbcType=BIGINT}, #{evaluateId,jdbcType=BIGINT}, #{subscription,jdbcType=DECIMAL}, 
+      #{price,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{isComment,jdbcType=INTEGER}, 
+      #{cancelReason,jdbcType=VARCHAR}, #{createdUserId,jdbcType=BIGINT}, #{updatedUserId,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.MaintainOrder" useGeneratedKeys="true">
+    insert into maintain_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serialNo != null">
+        serialNo,
+      </if>
+      <if test="orderNo != null">
+        orderNo,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="modelId != null">
+        modelId,
+      </if>
+      <if test="evaluateId != null">
+        evaluateId,
+      </if>
+      <if test="subscription != null">
+        subscription,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="isComment != null">
+        isComment,
+      </if>
+      <if test="cancelReason != null">
+        cancelReason,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="evaluateId != null">
+        #{evaluateId,jdbcType=BIGINT},
+      </if>
+      <if test="subscription != null">
+        #{subscription,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isComment != null">
+        #{isComment,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.MaintainOrder">
+    update maintain_order
+    <set>
+      <if test="serialNo != null">
+        serialNo = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        orderNo = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null">
+        modelId = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="evaluateId != null">
+        evaluateId = #{evaluateId,jdbcType=BIGINT},
+      </if>
+      <if test="subscription != null">
+        subscription = #{subscription,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isComment != null">
+        isComment = #{isComment,jdbcType=INTEGER},
+      </if>
+      <if test="cancelReason != null">
+        cancelReason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.MaintainOrder">
+    update maintain_order
+    set serialNo = #{serialNo,jdbcType=VARCHAR},
+      orderNo = #{orderNo,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=BIGINT},
+      modelId = #{modelId,jdbcType=BIGINT},
+      evaluateId = #{evaluateId,jdbcType=BIGINT},
+      subscription = #{subscription,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=INTEGER},
+      isComment = #{isComment,jdbcType=INTEGER},
+      cancelReason = #{cancelReason,jdbcType=VARCHAR},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

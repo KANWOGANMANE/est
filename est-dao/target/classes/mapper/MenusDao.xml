@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.MenusDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.Menus">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="menuCode" jdbcType="VARCHAR" property="menuCode" />
+    <result column="menuName" jdbcType="VARCHAR" property="menuName" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, menuCode, menuName, url, `status`, createdUserId, updatedUserId, createdTime, 
+    updatedTime, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menus
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from menus
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Menus" useGeneratedKeys="true">
+    insert into menus (menuCode, menuName, url, 
+      `status`, createdUserId, updatedUserId, 
+      createdTime, updatedTime, isDelete
+      )
+    values (#{menuCode,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createdUserId,jdbcType=BIGINT}, #{updatedUserId,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Menus" useGeneratedKeys="true">
+    insert into menus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuCode != null">
+        menuCode,
+      </if>
+      <if test="menuName != null">
+        menuName,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuCode != null">
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.Menus">
+    update menus
+    <set>
+      <if test="menuCode != null">
+        menuCode = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        menuName = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.Menus">
+    update menus
+    set menuCode = #{menuCode,jdbcType=VARCHAR},
+      menuName = #{menuName,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

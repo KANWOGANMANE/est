@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.EvaluateDetailDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.EvaluateDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="evaluateId" jdbcType="BIGINT" property="evaluateId" />
+    <result column="malfId" jdbcType="BIGINT" property="malfId" />
+    <result column="optionId" jdbcType="BIGINT" property="optionId" />
+    <result column="optionName" jdbcType="VARCHAR" property="optionName" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, evaluateId, malfId, optionId, optionName, createdUserId, updatedUserId, createdTime,
+    updatedTime, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from evaluate_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="listByEvaluateId" resultType="cn.gdrj.est.entity.EvaluateDetail">
+    select
+    <include refid="Base_Column_List" />
+    from evaluate_detail
+    where evaluateId = #{evaluateId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from evaluate_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.EvaluateDetail" useGeneratedKeys="true">
+    insert into evaluate_detail (evaluateId, malfId, optionId,
+      optionName, createdUserId, updatedUserId,
+      createdTime, updatedTime, isDelete
+      )
+    values (#{evaluateId,jdbcType=BIGINT}, #{malfId,jdbcType=BIGINT}, #{optionId,jdbcType=BIGINT},
+      #{optionName,jdbcType=VARCHAR}, #{createdUserId,jdbcType=BIGINT}, #{updatedUserId,jdbcType=BIGINT},
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.EvaluateDetail" useGeneratedKeys="true">
+    insert into evaluate_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evaluateId != null">
+        evaluateId,
+      </if>
+      <if test="malfId != null">
+        malfId,
+      </if>
+      <if test="optionId != null">
+        optionId,
+      </if>
+      <if test="optionName != null">
+        optionName,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evaluateId != null">
+        #{evaluateId,jdbcType=BIGINT},
+      </if>
+      <if test="malfId != null">
+        #{malfId,jdbcType=BIGINT},
+      </if>
+      <if test="optionId != null">
+        #{optionId,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null">
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+    <insert id="batchInsert">
+      insert into evaluate_detail (evaluateId, malfId, optionId,
+                                   optionName, createdUserId, updatedUserId,
+                                   createdTime, updatedTime, isDelete
+      )
+      values
+        <foreach collection="list" item="entity" separator=",">
+             (
+              #{entity.evaluateId,jdbcType=BIGINT},
+              #{entity.malfId,jdbcType=BIGINT},
+              #{entity.optionId,jdbcType=BIGINT},
+              #{entity.optionName,jdbcType=VARCHAR},
+              #{entity.createdUserId,jdbcType=BIGINT},
+              #{entity.updatedUserId,jdbcType=BIGINT},
+              #{entity.createdTime,jdbcType=TIMESTAMP},
+              #{entity.updatedTime,jdbcType=TIMESTAMP},
+              #{entity.isDelete,jdbcType=INTEGER}
+             )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.EvaluateDetail">
+    update evaluate_detail
+    <set>
+      <if test="evaluateId != null">
+        evaluateId = #{evaluateId,jdbcType=BIGINT},
+      </if>
+      <if test="malfId != null">
+        malfId = #{malfId,jdbcType=BIGINT},
+      </if>
+      <if test="optionId != null">
+        optionId = #{optionId,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null">
+        optionName = #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.EvaluateDetail">
+    update evaluate_detail
+    set evaluateId = #{evaluateId,jdbcType=BIGINT},
+      malfId = #{malfId,jdbcType=BIGINT},
+      optionId = #{optionId,jdbcType=BIGINT},
+      optionName = #{optionName,jdbcType=VARCHAR},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

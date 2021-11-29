@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.ModelDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.Model">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="modelName" jdbcType="VARCHAR" property="modelName" />
+    <result column="brandId" jdbcType="BIGINT" property="brandId" />
+    <result column="classifyId" jdbcType="BIGINT" property="classifyId" />
+    <result column="exchangePrice" jdbcType="DECIMAL" property="exchangePrice" />
+    <result column="topPrice" jdbcType="DECIMAL" property="topPrice" />
+    <result column="faceImg" jdbcType="VARCHAR" property="faceImg" />
+    <result column="contentImg" jdbcType="VARCHAR" property="contentImg" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, modelName, brandId, classifyId, exchangePrice, topPrice, faceImg, contentImg,
+    description, `status`, createdUserId, updatedUserId, createdTime, updatedTime, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from model
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="listByPage" resultType="cn.gdrj.est.entity.Model">
+      select
+      <include refid="Base_Column_List" />
+      from model
+      <trim prefix="WHERE" prefixOverrides="and">
+        <if test="model.modelName != null and model.modelName != ''">
+          modelName like concat('%',#{model.modelName},'%')
+        </if>
+        <if test="model.classifyId != null">
+          and classifyId = #{model.classifyId}
+        </if>
+        <if test="model.brandId != null">
+          and brandId = #{model.brandId}
+        </if>
+        <if test="model.status != null">
+          and status = #{model.status}
+        </if>
+        <if test="model.isDelete != null">
+          and isDelete = #{model.isDelete}
+        </if>
+      </trim>
+      limit #{offset},#{pageSize}
+    </select>
+
+  <select id="countBy" resultType="java.lang.Integer">
+    select count(*) from model
+    <trim prefix="WHERE" prefixOverrides="and">
+      <if test="modelName != null and modelName != ''">
+        modelName like concat('%',#{modelName},'%')
+      </if>
+      <if test="classifyId != null">
+        and classifyId = #{classifyId}
+      </if>
+      <if test="brandId != null">
+        and brandId = #{brandId}
+      </if>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+      <if test="isDelete != null">
+        and isDelete = #{isDelete}
+      </if>
+    </trim>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from model
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Model" useGeneratedKeys="true">
+    insert into model (modelName, brandId, classifyId,
+      exchangePrice, topPrice, faceImg,
+      contentImg, description, `status`,
+      createdUserId, updatedUserId, createdTime,
+      updatedTime, isDelete)
+    values (#{modelName,jdbcType=VARCHAR}, #{brandId,jdbcType=BIGINT}, #{classifyId,jdbcType=BIGINT},
+      #{exchangePrice,jdbcType=DECIMAL}, #{topPrice,jdbcType=DECIMAL}, #{faceImg,jdbcType=VARCHAR},
+      #{contentImg,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+      #{createdUserId,jdbcType=BIGINT}, #{updatedUserId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP},
+      #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.Model" useGeneratedKeys="true">
+    insert into model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelName != null">
+        modelName,
+      </if>
+      <if test="brandId != null">
+        brandId,
+      </if>
+      <if test="classifyId != null">
+        classifyId,
+      </if>
+      <if test="exchangePrice != null">
+        exchangePrice,
+      </if>
+      <if test="topPrice != null">
+        topPrice,
+      </if>
+      <if test="faceImg != null">
+        faceImg,
+      </if>
+      <if test="contentImg != null">
+        contentImg,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="classifyId != null">
+        #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="exchangePrice != null">
+        #{exchangePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="topPrice != null">
+        #{topPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="faceImg != null">
+        #{faceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="contentImg != null">
+        #{contentImg,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.Model">
+    update model
+    <set>
+      <if test="modelName != null">
+        modelName = #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brandId = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="classifyId != null">
+        classifyId = #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="exchangePrice != null">
+        exchangePrice = #{exchangePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="topPrice != null">
+        topPrice = #{topPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="faceImg != null">
+        faceImg = #{faceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="contentImg != null">
+        contentImg = #{contentImg,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.Model">
+    update model
+    set modelName = #{modelName,jdbcType=VARCHAR},
+      brandId = #{brandId,jdbcType=BIGINT},
+      classifyId = #{classifyId,jdbcType=BIGINT},
+      exchangePrice = #{exchangePrice,jdbcType=DECIMAL},
+      topPrice = #{topPrice,jdbcType=DECIMAL},
+      faceImg = #{faceImg,jdbcType=VARCHAR},
+      contentImg = #{contentImg,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

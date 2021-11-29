@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gdrj.est.dao.MalfunctionOptionsDao">
+  <resultMap id="BaseResultMap" type="cn.gdrj.est.entity.MalfunctionOptions">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="modelId" jdbcType="BIGINT" property="modelId" />
+    <result column="malfId" jdbcType="BIGINT" property="malfId" />
+    <result column="optionName" jdbcType="VARCHAR" property="optionName" />
+    <result column="isHint" jdbcType="INTEGER" property="isHint" />
+    <result column="hintInfo" jdbcType="VARCHAR" property="hintInfo" />
+    <result column="hintImg" jdbcType="VARCHAR" property="hintImg" />
+    <result column="processType" jdbcType="INTEGER" property="processType" />
+    <result column="ratio" jdbcType="INTEGER" property="ratio" />
+    <result column="createdUserId" jdbcType="BIGINT" property="createdUserId" />
+    <result column="updatedUserId" jdbcType="BIGINT" property="updatedUserId" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, modelId, malfId, optionName, isHint, hintInfo, hintImg, processType, ratio, createdUserId,
+    updatedUserId, createdTime, updatedTime, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from malfunction_options
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="listByIds" resultType="cn.gdrj.est.entity.MalfunctionOptions">
+    select
+    <include refid="Base_Column_List" />
+    from malfunction_options
+    where id in
+    <foreach collection="list" item="id" open="(" close=")" separator=",">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from malfunction_options
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.MalfunctionOptions" useGeneratedKeys="true">
+    insert into malfunction_options (modelId, malfId, optionName,
+      isHint, hintInfo, hintImg,
+      processType, ratio, createdUserId,
+      updatedUserId, createdTime, updatedTime,
+      isDelete)
+    values (#{modelId,jdbcType=BIGINT}, #{malfId,jdbcType=BIGINT}, #{optionName,jdbcType=VARCHAR},
+      #{isHint,jdbcType=INTEGER}, #{hintInfo,jdbcType=VARCHAR}, #{hintImg,jdbcType=VARCHAR},
+      #{processType,jdbcType=INTEGER}, #{ratio,jdbcType=INTEGER}, #{createdUserId,jdbcType=BIGINT},
+      #{updatedUserId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP},
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.gdrj.est.entity.MalfunctionOptions" useGeneratedKeys="true">
+    insert into malfunction_options
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        modelId,
+      </if>
+      <if test="malfId != null">
+        malfId,
+      </if>
+      <if test="optionName != null">
+        optionName,
+      </if>
+      <if test="isHint != null">
+        isHint,
+      </if>
+      <if test="hintInfo != null">
+        hintInfo,
+      </if>
+      <if test="hintImg != null">
+        hintImg,
+      </if>
+      <if test="processType != null">
+        processType,
+      </if>
+      <if test="ratio != null">
+        ratio,
+      </if>
+      <if test="createdUserId != null">
+        createdUserId,
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="malfId != null">
+        #{malfId,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null">
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="isHint != null">
+        #{isHint,jdbcType=INTEGER},
+      </if>
+      <if test="hintInfo != null">
+        #{hintInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hintImg != null">
+        #{hintImg,jdbcType=VARCHAR},
+      </if>
+      <if test="processType != null">
+        #{processType,jdbcType=INTEGER},
+      </if>
+      <if test="ratio != null">
+        #{ratio,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gdrj.est.entity.MalfunctionOptions">
+    update malfunction_options
+    <set>
+      <if test="modelId != null">
+        modelId = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="malfId != null">
+        malfId = #{malfId,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null">
+        optionName = #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="isHint != null">
+        isHint = #{isHint,jdbcType=INTEGER},
+      </if>
+      <if test="hintInfo != null">
+        hintInfo = #{hintInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hintImg != null">
+        hintImg = #{hintImg,jdbcType=VARCHAR},
+      </if>
+      <if test="processType != null">
+        processType = #{processType,jdbcType=INTEGER},
+      </if>
+      <if test="ratio != null">
+        ratio = #{ratio,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null">
+        createdUserId = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUserId != null">
+        updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gdrj.est.entity.MalfunctionOptions">
+    update malfunction_options
+    set modelId = #{modelId,jdbcType=BIGINT},
+      malfId = #{malfId,jdbcType=BIGINT},
+      optionName = #{optionName,jdbcType=VARCHAR},
+      isHint = #{isHint,jdbcType=INTEGER},
+      hintInfo = #{hintInfo,jdbcType=VARCHAR},
+      hintImg = #{hintImg,jdbcType=VARCHAR},
+      processType = #{processType,jdbcType=INTEGER},
+      ratio = #{ratio,jdbcType=INTEGER},
+      createdUserId = #{createdUserId,jdbcType=BIGINT},
+      updatedUserId = #{updatedUserId,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

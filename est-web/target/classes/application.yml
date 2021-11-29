@@ -1,0 +1,51 @@
+# 数据源
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/est?useUicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    # 不需要制定，springboot会根据url的配置自动加载驱动
+    #driver-class-name:
+#redis的配置信息
+  redis:
+    host: localhost
+    port: 6379
+
+# mybatis
+mybatis:
+  # sql映射文件的路径
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: cn.gdrj.est.entity
+
+# 微信登录的配置
+oauth2:
+  wechat:
+    appId: wx9168f76f000a0d4c
+    appSecret: 8ba69d5639242c3bd3a69dffe84336c1
+    loginUrl: https://open.weixin.qq.com/connect/qrconnect?
+    accessTokenUrl: https://api.weixin.qq.com/sns/oauth2/access_token?
+    # 冲定向请求的域名在我们目前的写法中，只能是：http://localhost:8080，后面的具体地址是可以任意的，因为在微信的配置中配置死了
+    redirectUrl: http://localhost:8080/api/user/login/wechatcallback
+    loginSuccessUrl: http://localhost:8081/redirect?token=
+
+oss:
+  url: https://ljx-bdqn.oss-cn-beijing.aliyuncs.com/
+
+
+# 支付宝支付的配置
+alipay:
+  # 商家的appid
+  app-id: 2016092500596549
+  # 商家的私钥
+  merchant-private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCdXh1MD8qjsMBU2hXMNewgzSfNLZ6gnJTtHBbqTK0QkiwCLNup4zHHuNZGhTnES6RmxptTJlRf6Ng4In02nPDUxa5lWzGmdwiEB463pxhuJytq9Rg47iBwt6+8LwhJ99+wR8C8+ZjZAPLBhn/Gxgb1gnc+2TuKznNO6m7EjHy51hOgTHL8c4/RBbh6LULBGAF+5WVSEyetlF5Rio+OF7JiRXf1F442ozMPaWXNhtG7yHsSMrqKLe1l35rvP0Pt+aXJuT2N+RoROsIdgC4MPGZo9FS6tLAWQuFfREhDAV4Z0CD1lgNsjKI4Kf/JrxLMf4WQosw+fcbyQR0YBkVRiyoTAgMBAAECggEBAJt0MTTGFMOHAzfPB+FnEw+EGmFRQ3Ydt/BS40Ao5n2MJ/UuIwC78pz9No8LZHlIz+rHHwEQyCDGf3FUgKTGfBF0BkcRwwZSaBMk9BLv+e42u2k5HOiAM4OlsPAQ9fs75bjZ6MfFOPyFN0l9eBP/4zf73Zg0N+Fy9+1pIGsA7OUVygIrYG0bofxySgDQvtNY7Pbu+hD0fWNrZUTo3ESr1oi0FL9JOFC8RLwnb+sa2ULgom7wIPdFlaxx8sepWceP1gSvTI+5oKXoR2DVipPZADYTbA4ChsotA1lBeaUwbxug8RKTk9lLJAzDb5rFIt+cd3erUqr4GQznHKnzhbd2mYECgYEA37Z5H5Vt178IntbEXWd9nuQqM3ILvpkoKRS0IaZyWaQ2XTtv8srtPbO9sX965jqXj9VP5sXv8/zd+6M+xRNv6aV/Gr9/DZadFL0QAGmOEN1nkEkeV3VsD3g6emFlHxULkQObNx5XD8t7pgNUZhr+/o0pIWNQ4df57IT1svkHfLECgYEAtBRiRUac4wNvkyIUAcHWvfbx+zotKBp6QDapF8JA+XExfC1NOs1U6iRfl5Io8WG9OjLVAOEdMoykz3w6UTOtSRoBCAAaKfbCw2fSNw6WRq5BCtsX0mrTELQKaNzXVnWXUpOk0ozBDst9qgWqzC6qXgfoqaUeCubO/UJxtLRc9AMCgYEAwROJghrDjHqRhBUzsLGLF8EwMupw/HTO1nXJ6WjwNDGnwdt0iQVer+wbAcBWX7Gd8UNXDIM0z00kgPOpTwmxguOUyY8Qpregpq9tyg1P0Xpk0YBpsW3kb42CWvEIB0VwkB2ernl/BmDGPMeO5fjSrvtBzlEbE3AFgX5XV7naHmECgYBxfCsWB1MViXPGIILFPLgtDTQgI+CTVmRWlVvouiWiTWBnJlF2TjJGQFfxuE2PGQ5cX+52WGfDFHlEvMAvrkZ1PCsMNKxIZ9cDuCj1Q38W2ffpdHtFwsZyz1OEFDCsrvyHML59ZfDAdyMhg+LIPFxnV8qbJpCRRDWLy1THEadGqwKBgEjx9y8ND4x0F+hU4pqGv+QTenEt55g+8UyNJ2clF63Em18aFu7byhuYCgXbPVYY7tb5gYfT2H76HRwzPmIqUVsk1HieVPPcJk8yOiiZHausbHNjSkf5UQlMVvdYsx8LdqYuyDFVp7jGoU2ey8CPoj+SLxJRnpvOjeG+Ur9EYDz1
+  # 支付宝的公钥
+  alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo69Uyn+4X21Z7qY/jbpxK/vWm8CosgYOBdAd/h2WGWvsYj7xA5p4tIY2nnrZwzsmcIfpZYCj2PjtS39JQS4iFXcGjZ93VHZYZJIkTaynwTT9iZQqc3nqG3wH/kfgIA7cyVjRJf567/27C3BYrOzeB4+waEgMR3ktnrrHNGXLuOkeZjlNzKwlsnhYUjwO69njSQLX+h87NDpE9ePp5KEB/JVbno1/pWiEO2+YASZlaNv7m+iqxU0EePvpcBOHcS41AZa9ct/oS7/sfQz8e4c2E4ElUvsvW0viWClAzymJeP8YXOA6dRy99fRNW5J0/QbCcMR7X4/OycrKe/7ayuYHlwIDAQAB
+  # 异步通知的回调地址
+  notify-url: http://zec5p5.natappfree.cc/api/pay/aliPay/notify
+  # 同步回调的地址
+  return-url: http://localhost:8081/api/pay/aliPay/return
+  sign-type: RSA2
+  charset: utf-8
+  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+
+  # ntyryi6290@sandbox.com
