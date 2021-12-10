@@ -1,0 +1,109 @@
+.banner {
+    background: url('../../assets/imgs/login_banner.png') no-repeat center top;
+    height    : 210px;
+}
+
+.content {
+    margin : 26px auto;
+    width  : 320px;
+    height : 578px;
+    padding: 27px 222px;
+
+    >img {
+        height : 45px;
+        padding: 20px 0;
+    }
+
+    /deep/ .el-input__prefix {
+        top : 4px;
+        left: 10px;
+    }
+}
+
+.login-mode {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : 32px 0;
+
+    span {
+        font-size: 14px;
+        color    : #a8a8a8;
+        cursor   : pointer;
+    }
+
+    .selected-mode {
+        font-size: 16px;
+        color    : #000;
+    }
+}
+
+
+
+.considerations {
+    font-size : 12px;
+    text-align: left;
+
+    p {
+        line-height: 26px;
+    }
+
+    a {
+        color: #005edd;
+    }
+}
+
+.other-signin {
+    height : 120px;
+    padding: 60px 0 0 0;
+
+    >p {
+        font-size: 12px;
+    }
+
+    >div {
+        display        : flex;
+        justify-content: space-around;
+        margin-top     : 30px;
+    }
+    img{
+        cursor: pointer;
+    }
+}
+
+.login {
+    /deep/ .el-button {
+        width       : 320px;
+        background  : #83d838;
+        color       : white;
+        border-color: #83d838;
+        margin      : 10px 0;
+    }
+}
+
+.footer {
+    height         : 144px;
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+
+    p:first-of-type {
+        font-size    : 16px;
+        margin-bottom: 28px;
+    }
+
+    p:last-of-type {
+        font-size: 14px;
+        color    : #999999;
+    }
+}
+
+.login_sms {
+    /deep/ .el-form-item__content {
+        display: flex;
+    }
+
+    /deep/ .el-button {
+        margin-left: 10px;
+    }
+}

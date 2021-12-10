@@ -1,0 +1,159 @@
+.warpBox {
+    margin         : 0 auto;
+    width          : 1200px;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.left {
+    width: 312px;
+}
+
+.right {
+    flex   : 0;
+    width  : 746px;
+    padding: 20px 60px;
+}
+
+.detail {
+    padding-top: 32px;
+
+    &>img {
+        margin: 10px auto;
+    }
+
+    &>p {
+        font-weight: bold;
+        line-height: 40px;
+    }
+
+    /deep/ .el-button {
+        margin: 26px 0;
+    }
+}
+
+.qrcode {
+    display   : flex;
+    padding   : 28px 32px;
+    margin-top: 30px;
+
+    div {
+        display        : flex;
+        flex-direction : column;
+        text-align     : left;
+        margin-left    : 24px;
+        justify-content: center;
+        line-height    : 20px;
+
+        span {
+            font-size: 12px;
+        }
+    }
+}
+
+.safe-tips {
+    border    : 1px solid rgb(205, 240, 173);
+    text-align: left;
+    background: #f7fdf2;
+    position  : relative;
+    padding   : 34px 58px 16px;
+}
+
+.title {
+    display      : flex;
+    align-items  : center;
+    margin-bottom: 22px;
+
+    span {
+        font-weight: bold;
+        font-size  : 16px;
+        line-height: 30px;
+    }
+
+    img {
+        margin: 0 15px;
+    }
+}
+
+.content {
+    &>p {
+        display    : none;
+        line-height: 14px;
+        font-size  : 12px;
+    }
+
+    &>.brief {
+        display: block;
+    }
+
+    &>.whiteSpace {
+        height: 56px;
+    }
+}
+
+.arrow {
+    display        : flex;
+    justify-content: center;
+}
+
+//下面是右侧样式
+/deep/ .rightWight {
+    padding: 20px 0;
+}
+
+/deep/ .horizontal {
+    margin-top   : 22px;
+    margin-bottom: 40px;
+    border-top   : 1px dashed #e5e5e5;
+}
+
+/deep/ .rightTitle {
+    font-size      : 14px;
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+
+    .titleSpan,
+    .optionName {
+        text-align: left;
+    }
+
+    .titleSpan {
+        width: 278px;
+    }
+
+    .optionName {
+        flex-grow: 1;
+        color    : #ff5a00;
+    }
+
+    .changeSapn {
+        width: 30px;
+        color: #a8a8a8;
+    }
+}
+
+/deep/ .rightButton {
+    display        : flex;
+    flex-wrap      : wrap;
+    justify-content: space-between;
+
+    &>.el-button {
+        width    : 346px;
+        margin   : 4px 0;
+        font-size: 12px;
+    }
+}
+
+.fixOrder {
+    padding: 70px 0 50px;
+
+    /deep/ .el-button {
+        width       : 310px;
+        background  : #83d838;
+        color       : white;
+        border-color: #83d838;
+        box-shadow  : 0 5px 5px #e0efd4;
+        margin-top  : 6px;
+    }
+}

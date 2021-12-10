@@ -1,0 +1,135 @@
+.warp {
+    margin: 38px auto 0;
+    width : 1200px;
+}
+
+.color-red {
+    color: #ff0101;
+}
+
+.color-orange {
+    color: #ff5b1f;
+}
+
+.top {
+    margin-bottom : 1px;
+    display       : flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 314px;
+
+    padding-top: 32px;
+
+    &>img {
+        margin: 10px auto;
+    }
+
+
+    &>p {
+        font-weight: bold;
+        line-height: 40px;
+    }
+
+    /deep/ .el-button {
+        margin: 26px 0;
+    }
+}
+
+.center {
+    flex      : 1;
+    margin    : 0 1px;
+    padding   : 42px 40px;
+    text-align: left;
+
+    &>p {
+        // span {
+        //     font-size: 14px;
+        // }
+
+        i {
+            color    : #83d838;
+            font-size: 16px;
+            margin   : 0 6px;
+        }
+    }
+
+    >div {
+        font-size: 20px;
+        margin   : 50px 0;
+
+        h4 {
+            display  : inline;
+            font-size: 30px;
+            margin   : 0 13px 0 18px;
+        }
+    }
+
+    /deep/ .el-button {
+        width       : 310px;
+        background  : #83d838;
+        color       : white;
+        border-color: #83d838;
+        box-shadow  : 0 5px 5px #e0efd4;
+        margin-top  : 6px;
+    }
+}
+
+.right {
+    width  : 222px;
+    padding: 60px 44px;
+
+}
+
+.rightFlex {
+    display        : flex;
+    justify-content: space-between;
+    flex-wrap      : wrap;
+
+    p {
+        height     : 46px;
+        display    : flex;
+        align-items: center;
+    }
+
+    i {
+        font-size   : 22px;
+        color       : #85c34f;
+        margin-right: 10px;
+    }
+}
+
+.bottom {
+    .tips {
+        height      : 50px;
+        color       : #fff;
+        background  : linear-gradient(to right, #94ddc3, #84c9d4);
+        display     : flex;
+        align-items : center;
+        font-size   : 14px;
+        padding-left: 75px;
+
+        >:nth-child(2) {
+            margin: 0 15px;
+        }
+    }
+}
+
+.goods-labels {
+    display      : flex;
+    flex-wrap    : wrap;
+    margin-bottom: 1px;
+    padding      : 30px 26px;
+
+    span {
+        border       : 1px solid #e6e6e6;
+        color        : #B0B0B0;
+        height       : 28px;
+        line-height  : 28px;
+        padding      : 0 12px;
+        margin       : 0 10px 14px 0;
+        border-radius: 28px;
+    }
+
+}

@@ -1,0 +1,42 @@
+.step-active {
+    .el-step__icon {
+        background  : #83d838;
+        border-color: #83d838;
+    }
+
+    .process-line {
+        background: #83d838;
+    }
+}
+
+.el-step__icon {
+    background  : #dcdcdc;
+    border-color: #dcdcdc;
+    color       : #fff;
+}
+
+.process-line {
+    position  : absolute;
+    margin-top: -1px;
+    top       : 50%;
+    left      : -35%;
+    right     : -35%;
+    height    : 2px;
+    background: #eeeeee;
+}
+
+.el-step:first-of-type .process-line {
+    left : 50%;
+    right: -35%;
+
+}
+
+.el-step:last-of-type .process-line {
+    right: 50%;
+    left : -35%;
+
+}
+
+.el-step__title {
+    font-size: 14px;
+}
